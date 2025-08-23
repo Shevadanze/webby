@@ -1,0 +1,181 @@
+/* ===== Dark Theme Base ===== */
+:root {
+  --bg: #0f1115;
+  --surface: #151923;
+  --surface-2: #1b2030;
+  --text: #e6e8ef;
+  --muted: #a1a8b5;
+  --primary: #6ea8fe;   /* tweak to your brand */
+  --accent: #9b86f1;
+  --danger: #ff6b6b;
+  --border: #2a3246;
+  --shadow: 0 10px 30px rgba(0,0,0,0.35);
+  --radius: 12px;
+  --focus: 0 0 0 3px rgba(110,168,254,.35);
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  margin: 0;
+  font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Layout helpers ===== */
+.container {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+}
+
+section { padding: 2.5rem 0; }
+
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+  line-height: 1.25;
+  margin: 0 0 .6rem;
+  letter-spacing: .3px;
+}
+h1 { font-size: clamp(2rem, 2.8vw + 1rem, 3rem); }
+h2 { font-size: clamp(1.5rem, 2vw + .8rem, 2.2rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1rem; color: var(--text); }
+small, .muted { color: var(--muted); }
+
+/* ===== Links ===== */
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+a:focus-visible { outline: none; box-shadow: var(--focus); border-radius: 6px; }
+
+/* ===== Buttons ===== */
+.button,
+button,
+input[type="button"],
+input[type="submit"] {
+  appearance: none;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  color: var(--text);
+  padding: .7rem 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform .08s ease, border-color .2s ease, background .2s ease;
+}
+.button:hover,
+button:hover { transform: translateY(-1px); border-color: var(--primary); }
+.button:active,
+button:active { transform: translateY(0); }
+.button.primary,
+button.primary { background: var(--primary); color: #0b1020; border-color: transparent; }
+.button.danger { background: var(--danger); color: #1b0f11; border-color: transparent; }
+button:focus-visible { outline: none; box-shadow: var(--focus); }
+
+/* ===== Forms ===== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: .7rem .85rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border-color .2s ease, background .2s ease;
+}
+input::placeholder, textarea::placeholder { color: var(--muted); }
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary);
+  box-shadow: var(--focus);
+  background: var(--surface-2);
+}
+label { display: block; margin: 0 0 .4rem; color: var(--muted); }
+
+/* ===== Cards ===== */
+.card {
+  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+.card + .card { margin-top: 1rem; }
+
+/* ===== Tables ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+th, td {
+  padding: .9rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+thead th {
+  background: var(--surface-2);
+  font-weight: 600;
+  color: var(--text);
+}
+tbody tr:hover { background: rgba(255,255,255,0.03); }
+
+/* ===== Code blocks ===== */
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: #0c0e14;
+  color: #e2e8f0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+code { padding: .15rem .35rem; }
+pre { padding: 1rem; overflow: auto; }
+
+/* ===== Lists ===== */
+ul, ol { margin: 0 0 1rem 1.25rem; }
+li { margin: .25rem 0; }
+
+/* ===== Media ===== */
+img, video { max-width: 100%; height: auto; border-radius: 10px; }
+
+/* ===== Utilities ===== */
+.hr { height: 1px; background: var(--border); border: 0; margin: 1.5rem 0; }
+.center { text-align: center; }
+.grid { display: grid; gap: 1rem; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+@media (max-width: 800px) {
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* ===== Optional: auto-enable when user prefers dark ===== */
+@media (prefers-color-scheme: light) {
+  /* Keep dark regardless; remove this block if you want auto switch */
+  /* Or invert variables here for a light version */
+}
